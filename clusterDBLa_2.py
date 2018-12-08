@@ -188,7 +188,7 @@ def allocate_w_hmmer(infasta, outFile, evalue, cpu):
         + " " + infasta
         + " > /dev/null")
 
-    print hmm_cmd
+    print hmm_cmd + "\n"
     check_call(hmm_cmd, shell=True)
 
     return outFile
@@ -230,24 +230,24 @@ def process_hmmer_results(infasta, hmmoutput, outFile):
 def translateAndclassify(centroidFile, outdir, classifyOnly, minEval, verbose, cpu):
     if classifyOnly:
         prefix = os.path.splitext(os.path.basename(centroidFile))[0]
-        hmmerIn = outdir + os.path.basename(centroidFile)
+        hmmerIn = centroidFile
     else:
         prefix = os.path.splitext(os.path.basename(centroidFile))[0] + "_renamed_centroids"
         hmmerIn = outdir + os.path.splitext(os.path.basename(centroidFile))[0] + "_renamed_centroids.fasta"
     
     if verbose:
-        print "translate centroid seqs..."               
+        print "translate centroid seqs...\n\n"               
     reads_3frame = translate_3_frame(hmmerIn
         , outdir+prefix+"_translateAA.fa")
 
     if verbose:
-        print "search AA seqs in domains..."               
+        print "search AA seqs in domains...\n\n"               
       
     hmm_out = allocate_w_hmmer(reads_3frame
         , outdir+prefix+"_nhmmOut.txt", minEval, cpu)
 
     if verbose:
-        print "classify types to the most likely domain and predict their upsTypes..."               
+        print "classify types to the most likely domain and predict their upsTypes...\n\n"               
  
     process_hmmer_results(hmmerIn, hmm_out, outdir+prefix+"_DBLaUpsType.csv")
 
