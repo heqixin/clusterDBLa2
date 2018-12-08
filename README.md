@@ -1,12 +1,12 @@
 # clusterDBLalpha
 A python script to generate an otu table from cleaned DBLa sequences.
 
-##Installation
+## Installation
 The script depends on python2.7. 
 All the necessary programs are in the `third_party` folder.
 The hmm file for dbla search is under `data` folder
 
-##Usage
+## Usage
 The fasta file is assumed to be either in the format used by Thomas Rask's pipeline 
 or the updated pipeline which uses the Usearch format to assign reads to isolates.  
 you can either only perform cluster or only perform upsTypesSearch by choosing the 
